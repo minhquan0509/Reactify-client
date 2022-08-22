@@ -1,8 +1,10 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react"
 import { Container, Form } from "react-bootstrap";
 import SpotifyWebApi from 'spotify-web-api-node'
 import Logo from "./Logo";
 import Player from "./Player";
+import MusicPlayer from "./MusicPlayer";
 import TrackSearchResult from "./TrackSearchResult";
 import useAuth from "./useAuth"
 
@@ -14,6 +16,7 @@ export default function Dashboard({code}){
     const [search, setSearch] = useState('')
     const [searchResults, setSearchResults] = useState([]);
     const [playingTrack, setPlayingTrack] = useState();
+    const [lyrics, setLyrics] = useState('')
     const accessToken = useAuth(code);
 
     const chooseTrack = (track) => {
@@ -21,7 +24,21 @@ export default function Dashboard({code}){
         setSearch('')
     }
 
-    console.log(searchResults)
+    useEffect(() => {
+        if(!playingTrack) return
+        
+        axios.get('http://localhost:3001/lyrics',{
+            params: {
+                track: playingTrack.title,
+                artist: playingTrack.artist
+            }
+        }).then(res => {
+            console.log(res.data);
+            setLyrics(res.data.lyrics)
+        })
+    }, [playingTrack])
+
+    // console.log(searchResults)
 
     useEffect(() => {
         if(!accessToken) return
@@ -36,7 +53,7 @@ export default function Dashboard({code}){
 
         spotifyApi.searchTracks(search)
         .then(res => {
-            // console.log(res.body.tracks.items);
+            console.log(res.body.tracks.items);
             if (cancel) return
             setSearchResults( res.body.tracks.items.map(track =>{
                 const smallestAlbumImage = track.album.images.reduce((smallest, image) => {
@@ -48,6 +65,7 @@ export default function Dashboard({code}){
                     artist: track.artists[0].name,
                     title: track.name,
                     uri: track.uri,
+                    id: track.id,
                     albumUrl: smallestAlbumImage.url
                 }
             })
@@ -73,8 +91,16 @@ export default function Dashboard({code}){
                 {searchResults.map(track => (
                     <TrackSearchResult track={track} key={track.uri} chooseTrack={chooseTrack} />
                 ))}
+                <div>
+                    {searchResults.length === 0 && (
+                        <div className="text-center rounded" style={{whiteSpace: "pre", color: '#fff', fontSize: '20px', fontWeight: '600'}}>
+                            {lyrics}
+                        </div>
+                    )}
+                </div>
             </div>
-            <div><Player accessToken={accessToken} trackUri={playingTrack?.uri} /></div>
+            <div><MusicPlayer accessToken={accessToken} id={playingTrack?.id}></MusicPlayer></div>
+            {/* <div><Player accessToken={accessToken} trackUri={playingTrack?.uri} /></div> */}
         </Container>
         </div>
     )

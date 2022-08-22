@@ -7,7 +7,9 @@ import Dashboard from './Dashboard';
 const code = new URLSearchParams(window.location.search).get('code')
 
 function App() {
-
+  useEffect(() => {
+    document.title = "Reactify";
+  }, []);
   return code ? <Dashboard code={ code }/> : <Login/>
 }
 
