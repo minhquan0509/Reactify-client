@@ -1,13 +1,67 @@
+*{
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+  list-style-type: none;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-family,CircularSpTitle,CircularSpTitle-Tall,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family:'Poppins', sans-serif;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+.nav{
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-icon{
+  height: 24px;
+  width: 24px;
+  margin-right: 10px;
+  vertical-align: bottom;
+}
+
+.nav-item{
+  padding: 10px 0;
+}
+
+.nav-item :hover{
+  color: #fff;
+}
+
+.link{
+  color: #b3b3b3;
+}
+
+.searchBar{
+  border-radius: 25px !important;
+  width: 50% !important;
+}
+
+.trackCard{
+  cursor: pointer;
+  background-color: #2a2e2b;
+  min-width: 180px;
+}
+
+.track-wrapper :hover{
+  background-color: #414542;
+}
+
+.trackCard-title{
+  text-overflow: ellipsis;
 }

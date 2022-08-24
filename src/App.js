@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import axios from 'axios'
-import Login from './Login';
+import Login from './pages/Login';
 import Dashboard from './Dashboard';
 
 const code = new URLSearchParams(window.location.search).get('code')
