@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Login from './pages/Login';
-import Dashboard from './Dashboard';
+import Dashboard from './pages/Dashboard';
 
 const code = new URLSearchParams(window.location.search).get('code')
 

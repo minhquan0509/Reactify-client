@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react"
 import { Container, Form } from "react-bootstrap";
 import SpotifyWebApi from 'spotify-web-api-node'
-import TrackSearchResult from "../TrackSearchResult";
+import TrackSearchResult from "../components/Track/TrackSearchResult";
 
 
 export default function Search({accessToken, playingTrack, setPlayingTrack, spotifyApi}){

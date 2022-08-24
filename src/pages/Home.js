@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap'
-import TrackTag from '../TrackTag';
-import TrackCard from '../TrackCard';
+import TrackTag from '../components/Track/TrackTag';
+import TrackCard from '../components/Track/TrackCard';
 const trackList = [
     {
         albumUrl: "https://i.scdn.co/image/ab67616d0000b27329f906fe7a60df7777b02ee1",

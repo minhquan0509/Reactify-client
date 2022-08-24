@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
 import SpotifyWebApi from 'spotify-web-api-node'
 import { Routes, Route} from 'react-router-dom'
-import MusicPlayer from "./MusicPlayer";
-import useAuth from "./useAuth"
-import Sidebar from "./Sidebar";
-import Search from "./pages/Search";
-import Home from "./pages/Home";
+import MusicPlayer from "../components/MusicPlayer";
+import useAuth from "../hooks/useAuth"
+import Sidebar from "../components/Sidebar";
+import Search from "./Search";
+import Home from "./Home";
 
 const spotifyApi = new SpotifyWebApi({
     clientId: process.env.REACT_APP_CLIENT_ID,
