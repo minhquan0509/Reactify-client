@@ -20,10 +20,13 @@ export default function Dashboard({code}){
     useEffect(() => {
         if(!accessToken) return
         spotifyApi.setAccessToken(accessToken)
+        // spotifyApi.getMe()
+        // .then(data => console.log(data))
+        // .catch(err => console.log(err))
     }, [accessToken])
 
     return(
-        <div style={{backgroundColor: '#121914', width: '100%'}} className="row">
+        <div style={{backgroundColor: '#121914', width: '100%'}} className="row m-0">
             <Sidebar />
 
             <Routes>

@@ -1,6 +1,8 @@
 import { Container } from 'react-bootstrap'
 import TrackTag from '../components/Track/TrackTag';
 import TrackCard from '../components/Track/TrackCard';
+import Header from '../components/Header';
+
 const trackList = [
     {
         albumUrl: "https://i.scdn.co/image/ab67616d0000b27329f906fe7a60df7777b02ee1",
@@ -42,8 +44,9 @@ const trackList = [
 
 export default function Home(){
     return (
-        <Container className="d-flex flex-column py-2 px-4 col" style={{height: '100vh', color: '#fff', marginTop: '80px'}}>
-            <h2 className='mb-4'>Hôm nay nghe gì</h2>
+        <Container className="d-flex flex-column py-2 px-4 col" style={{height: '100vh', color: '#fff'}}>
+            <Header/>
+            <h2 className='my-4'>Hôm nay nghe gì</h2>
             <div className='row mb-2'>
                 {trackList.map(track => (
                     <div className='col-4'><TrackTag track={track}/></div>
