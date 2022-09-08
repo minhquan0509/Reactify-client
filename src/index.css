@@ -23,6 +23,10 @@ a{
   text-decoration: none !important;
 }
 
+.visible{
+  overflow: visible !important;
+}
+
 .nav{
   font-size: 14px;
   font-weight: 500;
@@ -47,9 +51,16 @@ a{
   color: #b3b3b3;
 }
 
+.searchContainer{
+  position: relative;
+}
+
 .searchBar{
   border-radius: 25px !important;
   width: 50% !important;
+  position: absolute;
+  top: 16px;
+  left: 120px;
 }
 
 .trackCard{
