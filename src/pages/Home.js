@@ -2,6 +2,7 @@ import { Container } from 'react-bootstrap'
 import TrackTag from '../components/Track/TrackTag';
 import TrackCard from '../components/Track/TrackCard';
 import Header from '../components/Header';
+import { useStateProvider } from '../utils/StateProvider';
 
 const trackList = [
     {
@@ -42,14 +43,15 @@ const trackList = [
     }
 ];
 
-export default function Home(){
+export default function Home({setPlayingTrack}){
+    const [{token, topTracks}, dispatch] = useStateProvider();
     return (
         <Container className="d-flex flex-column py-2 px-4 col" style={{height: '100vh', color: '#fff'}}>
             <Header/>
             <h2 className='my-4'>Hôm nay nghe gì</h2>
             <div className='row mb-2'>
-                {trackList.map(track => (
-                    <div className='col-4'><TrackTag track={track}/></div>
+                {topTracks.map(track => (
+                    <div className='col-4'><TrackTag track={track} setPlayingTrack={setPlayingTrack}/></div>
                 ))}
             </div>
             <h2 className='mb-4'>Top mixes</h2>
