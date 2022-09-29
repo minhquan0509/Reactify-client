@@ -1,7 +1,10 @@
 import React from "react"
-export default function TrackTag({track, setPlayingTrack}){
+import { reducerCases } from "../../utils/constants";
+import { useStateProvider } from "../../utils/StateProvider"
+export default function TrackTag({track}){
+    const [{currentPlaying}, dispatch] = useStateProvider();
     function handlePlay(){
-        setPlayingTrack(track)
+        dispatch({type: reducerCases.SET_PLAYING, currentPlaying: track})
     }
     return (
         <div className="d-flex align-items-center rounded mb-2" style={{cursor: "pointer", backgroundColor: '#2a2e2b'}} onClick={handlePlay}>

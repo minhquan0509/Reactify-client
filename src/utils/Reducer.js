@@ -10,7 +10,8 @@ export const initialState = {
     playerState: false,
     topTracks: [],
     selectedPlaylist: null,
-    selectedPlaylistId: null
+    selectedPlaylistId: null,
+    spotifyApi: null
 }
 
 const reducer = (state, action) => {
@@ -54,6 +55,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 selectedPlaylistId: action.selectedPlaylistId,
+            };
+        case reducerCases.SET_SPOTIFY_API:
+            return {
+                ...state,
+                spotifyApi: action.spotifyApi,
             };
         default:
             return state;

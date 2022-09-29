@@ -5,6 +5,8 @@ import SpotifyWebApi from 'spotify-web-api-node'
 import Header from "../components/Header";
 import Category from "../components/Track/Category";
 import TrackSearchResult from "../components/Track/TrackSearchResult";
+import { reducerCases } from "../utils/constants";
+import { useStateProvider } from "../utils/StateProvider";
 
 const categoryList = [
     {
@@ -69,31 +71,30 @@ const categoryList = [
     },
 ]
 
-export default function Search({accessToken, playingTrack, setPlayingTrack, spotifyApi}){
+export default function Search({accessToken}){
+    const [{spotifyApi}, dispatch] = useStateProvider();
     const [search, setSearch] = useState('')
     const [searchResults, setSearchResults] = useState([]);
     const [lyrics, setLyrics] = useState('')
 
     const chooseTrack = (track) => {
-        setPlayingTrack(track)
+        dispatch({type: reducerCases.SET_PLAYING, currentPlaying: track})
         setSearch('')
     }
 
-    console.log(searchResults)
-
-    useEffect(() => {
-        if(!playingTrack) return
+    // useEffect(() => {
+    //     if(!playingTrack) return
         
-        axios.get('http://localhost:3001/lyrics',{
-            params: {
-                track: playingTrack.title,
-                artist: playingTrack.artist
-            }
-        }).then(res => {
-            console.log(res.data);
-            setLyrics(res.data.lyrics)
-        })
-    }, [playingTrack])
+    //     axios.get('http://localhost:3001/lyrics',{
+    //         params: {
+    //             track: playingTrack.title,
+    //             artist: playingTrack.artist
+    //         }
+    //     }).then(res => {
+    //         console.log(res.data);
+    //         setLyrics(res.data.lyrics)
+    //     })
+    // }, [playingTrack])
 
     useEffect(() => {
         if(!search) return setSearchResults([]);
@@ -148,7 +149,7 @@ export default function Search({accessToken, playingTrack, setPlayingTrack, spot
                                 <h2 className='mb-4'>Search</h2>
                                 <div className='row mb-2'>
                                     {categoryList.map(category => (
-                                        <div className='col-2'><Category category={category}/></div>
+                                        <div className='col-2'><Category key={category.title} category={category}/></div>
                                     ))}
                                 </div>
                             </div>

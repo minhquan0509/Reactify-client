@@ -7,4 +7,5 @@ export const reducerCases = {
     SET_TOP_TRACKS: "SET_TOP_TRACKS",
     SET_PLAYLIST: "SET_PLAYLIST",
     SET_PLAYLIST_ID: "SET_PLAYLIST_ID",
+    SET_SPOTIFY_API: "SET_SPOTIFY_API",
   };

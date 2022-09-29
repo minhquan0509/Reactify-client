@@ -14,15 +14,14 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 export default function Dashboard({code}){
-    const [playingTrack, setPlayingTrack] = useState();
-    // const [topTracks, setTopTracks] = useState([])
-    const [{ token }, dispatch] = useStateProvider();
+    const [{ token, currentPlaying }, dispatch] = useStateProvider();
     const accessToken = useAuth(code);
     const [userPlayLists, setUserPlayLists] = useState([]);
 
     useEffect(() => {
         if(!accessToken) return
         spotifyApi.setAccessToken(accessToken)
+        dispatch({type: reducerCases.SET_SPOTIFY_API, spotifyApi})
         spotifyApi.getMyTopTracks()
         .then(res => {
             const topTracks = res.body.items.map(track =>{
@@ -57,10 +56,10 @@ export default function Dashboard({code}){
             <Sidebar userPlayLists={userPlayLists}/>
 
             <Routes>
-                <Route path="/" element={<Home setPlayingTrack={setPlayingTrack}/>} />
-                <Route path="/search" element={<Search accessToken={accessToken} playingTrack={playingTrack} setPlayingTrack={setPlayingTrack} spotifyApi={spotifyApi}/>} />
+                <Route path="/" element={<Home/>} />
+                <Route path="/search" element={<Search accessToken={accessToken}/>} />
             </Routes>
-            <div><MusicPlayer accessToken={accessToken} id={playingTrack?.id}></MusicPlayer></div>
+            <div><MusicPlayer accessToken={accessToken} id={currentPlaying?.id}></MusicPlayer></div>
         </div>
     )
 }

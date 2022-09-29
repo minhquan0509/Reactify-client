@@ -44,7 +44,7 @@ export default function Sidebar({userPlayLists}){
 
                 <ul className="d-flex flex-column p-0 nav">
                     {userPlayLists.map(playlist => (
-                        <li className="nav-item link nav-playlist">{playlist}</li>
+                        <li key={playlist} className="nav-item link nav-playlist">{playlist}</li>
                     ))}
                 </ul>
             </div>
